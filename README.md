@@ -16,7 +16,8 @@ Build system for ESTC OS-less tasks
 ## Various notes
 * You can put worhskops git repository to [projects](projects) directory.
 * It's possible to use helper commands from [common_defs.mk](common_defs.mk) to link your binaries. Example:
-```makefile
+
+``` make
 main: main.o
     @echo "Linking ELF"
     $(LINK_ELF)
