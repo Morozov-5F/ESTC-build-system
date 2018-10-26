@@ -115,3 +115,8 @@ FLASH_BINARY = $(Q)$(STFLASH) write $?.bin 0x8000000
 %.bin: %.elf
 	@echo " OBJCOPY" $^
 	$(MAKE_IMAGE)
+
+# Empty target to silence errors when there are no dep files (e.g. first
+# make run)
+%.d: ;
+.PRECIOUS: %.d

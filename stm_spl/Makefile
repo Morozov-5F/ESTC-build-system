@@ -19,3 +19,5 @@ $(LIB): $(OBJS)
 clean:
 	@echo "Cleaning directory"
 	@rm -f $(OBJS) $(DEPS) $(LIB)
+
+include $(wildcard $(DEPS))
