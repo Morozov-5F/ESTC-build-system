@@ -56,7 +56,7 @@
   *-----------------------------------------------------------------------------
   *        APB2 Prescaler                         | 2
   *-----------------------------------------------------------------------------
-  *        HSE Frequency(Hz)                      | 8000000
+  *        HSE Frequency(Hz)                      | 25000000
   *-----------------------------------------------------------------------------
   *        PLL_M                                  | 25
   *-----------------------------------------------------------------------------
@@ -152,17 +152,9 @@
 /******************************************************************************/
 
 /************************* PLL Parameters *************************************/
-
-#define DISABLE_HSE
-
 /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */
-#ifdef DISABLE_HSE
-  #define PLL_M   16
-#else
-  #define PLL_M   25
-#endif
-
-#define PLL_N    336
+#define PLL_M      25
+#define PLL_N      288
 
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      2
@@ -361,7 +353,6 @@ static void SetSysClock(void)
 /******************************************************************************/
   __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
 
-#ifndef DISABLE_HSE
   /* Enable HSE */
   RCC->CR |= ((uint32_t)RCC_CR_HSEON);
 
@@ -371,7 +362,6 @@ static void SetSysClock(void)
     HSEStatus = RCC->CR & RCC_CR_HSERDY;
     StartUpCounter++;
   } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
-#endif  /* ifndef DISABLE_HSE */
 
   if ((RCC->CR & RCC_CR_HSERDY) != RESET)
   {
@@ -441,8 +431,6 @@ static void SetSysClock(void)
   else
   { /* If HSE fails to start-up, the application will have wrong clock
          configuration. User can add here some code to deal with this error */
-    RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) - 1) << 16) |
-                   (RCC_PLLCFGR_PLLSRC_HSI) | (PLL_Q << 24);
   }
 
 }

@@ -19,5 +19,3 @@ $(LIB): $(STARTUP) $(OBJS)
 clean:
 	@echo "Cleaning directory"
 	@rm -f $(OBJS) $(DEPS) $(LIB) $(STARTUP)
-
-include $(wildcard $(DEPS))
