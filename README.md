@@ -24,3 +24,27 @@ main: main.o
     @echo "Making image"
     $(MAKE_IMAGE)
 ```
+
+## Debugging 
+If you have `arm-none-eabi-gdb` binary installed, then you can skip right to step 2 of this instruction. Otherwise, stat from the beginning
+1. Install gdb for ARM. In ubuntu:
+   ```
+   #> sudo apt install gdb-mutiarch
+   ```
+2. Connect a board and use `st-util` to start a GB server on it:
+   ```
+   ?> st-util -m -p 4242
+   ```
+3. Navigate to your project directory and launch gdb. For ubuntu: 
+   ``` 
+   ?> gdb-multiarch main.elf
+   ```
+4. Connect to a gdb server on board and load your binary:
+   ```
+   gdb> target extended-remote :4242
+   gdb> load main.elf
+   gdb> continue
+   ```
+   Tou can put those lines (omitting `gdb>` prefix) to the `~/.gbinit` file.
+5. Press a reset on the board
+6. Debug normally. GDB reference: [GDB refcard](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf).
