@@ -14,6 +14,7 @@ Build system for ESTC OS-less tasks
 * [projects](projects) -- directory with workshops. Every workshop should be in a separate directory inside and should define its own makefile rules. Take a look at the [led_test](projects/led_test) as an example.
 
 ## Various notes
+* Please note that default clock configuration is incorrect on purpoose and will force MCU to use the HSI oscillator as a clock source. One need to configure the desired MCU clocking manually.
 * You can put worhskops git repository to [projects](projects) directory.
 * It's possible to use helper commands from [common_defs.mk](common_defs.mk) to link your binaries. Example:
 
