@@ -49,3 +49,18 @@ If you have `arm-none-eabi-gdb` binary installed, then you can skip right to ste
    Tou can put those lines (omitting `gdb>` prefix) to the `~/.gbinit` file.
 5. Press a reset on the board
 6. Debug normally. GDB reference: [GDB refcard](http://users.ece.utexas.edu/~adnan/gdb-refcard.pdf).
+
+## VSCode usage
+This repo contains basic settings for VSCode editor. Editor support include:
+* IntelliSense for whole project
+* Jump to definition/declaration
+* Rudimentary code building and debugging
+
+### Debugging with VSCode
+Debugging is pretty straightforward -- open the file in the directory that contains `main.elf` build file and start a regular debug session.
+
+Known issues: 
+* Sometimes VSCode will fail with "unable to load main.elf" message. In that case execute the following command in the terminal:
+``` 
+$> killall st-util
+```

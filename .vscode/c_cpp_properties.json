@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/common/include/**",
+                "${workspaceFolder}/stm_spl/CMSIS/inc/**",
+                "${workspaceFolder}/stm_spl/CMSIS/ST/inc/**",
+                "${workspaceFolder}/stm_spl/STM32F4xx/inc/**"
+            ],
+            "defines": [
+                "USE_STDPERIPH_DRIVER",
+                "STM32F40_41xxx",
+                "HSE_VALUE=8000000"
+            ],
+            "compilerPath": "/usr/lib64/ccache/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64",
+            "compilerArgs": [
+                "-target=arm-none-eabi",
+                "-mcpu=cortex-m4",
+                "-mfpu=fpv4-sp-d16",
+                "-mfloat-abi=hard"
+            ]
+        }
+    ],
+    "version": 4
+}
