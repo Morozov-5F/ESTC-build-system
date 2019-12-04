@@ -4,31 +4,31 @@
 
 static void setupClock(void)
 {
-  // Try to enable the HSE oscillator
+  /* Try to enable the HSE oscillator */
   if (RCC_GetFlagStatus(RCC_FLAG_HSERDY) == RESET)
   {
       RCC_HSEConfig(RCC_HSE_ON);
       if (SUCCESS != RCC_WaitForHSEStartUp())
       {
-        // IF HSE fails - do nothing
+        /* IF HSE fails - do nothing */
         goto hse_fail;
       }
   }
 
-  // Switch to HSE instead of PLL and wait until it switches
+  /* Switch to HSE instead of PLL and wait until it switches */
   RCC_SYSCLKConfig(RCC_SYSCLKSource_HSE);
   while (RCC_GetSYSCLKSource() != 0x04);
 
-  // Disable PLL
+  /* Disable PLL */
   RCC_PLLCmd(DISABLE);
   while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != RESET);
   
-  // Configure PLL
+  /* Configure PLL */
   RCC_PLLConfig(RCC_PLLSource_HSE, 8, 336, 2, 7);
   RCC_PLLCmd(ENABLE);
   while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != SET);
   
-  // Switch to PLL instead of HSE
+  /* Switch to PLL instead of HSE */
   RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
   while (RCC_GetSYSCLKSource() != 0x08);
 
