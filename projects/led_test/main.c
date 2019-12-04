@@ -24,7 +24,7 @@ static void setupClock(void)
   while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != RESET);
   
   // Configure PLL
-  RCC_PLLConfig(RCC_PLLSource_HSE, 8, 336, 2, 6);
+  RCC_PLLConfig(RCC_PLLSource_HSE, 8, 336, 2, 7);
   RCC_PLLCmd(ENABLE);
   while (RCC_GetFlagStatus(RCC_FLAG_PLLRDY) != SET);
   
